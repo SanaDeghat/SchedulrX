@@ -108,6 +108,9 @@ def submit():
 def appointments():
     appointments = load_appointments()
     return render_template('appointments.html', appointments=appointments)
+@app.route('/health')
+def health():
+    return "OK", 200
 
 if __name__ == '__main__':
     app.run()
