@@ -72,14 +72,13 @@ def suggest_time(model):
 @app.route('/')
 def form():
     appointments = load_appointments()
-    model = train_model(appointments)
-    suggestions = suggest_time(model)
     suggestions = []
-    if model:
+
+    if len(appointments) > 0:
+        model = train_model(appointments)
         suggestions = suggest_time(model)
 
     return render_template('form.html', suggestions=suggestions)
-
 
 
 @app.route('/submit', methods=['POST'])
@@ -111,4 +110,4 @@ def appointments():
     return render_template('appointments.html', appointments=appointments)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
